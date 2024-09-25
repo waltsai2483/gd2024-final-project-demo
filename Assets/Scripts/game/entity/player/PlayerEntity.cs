@@ -1,0 +1,56 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+
+public class PlayerEntity : Entity
+{
+    public AttackIndicator attackIndicator;
+
+    private Vector2 _inputDirection;
+
+    private bool _isHoldingAttack = false;
+
+    public override bool isAttacking
+    {
+        get => _isHoldingAttack;
+    }
+
+    public Vector3 mouseDirection { get; private set; }
+
+    private readonly StatModifier _attackSlownessModifier = new(StatOperationType.AddPercent, -0.25f);
+
+    protected override void Update()
+    {
+        base.Update();
+        Vector3 mousePos = CameraControl.instance.GetMousePos();
+        HandleMovement(_inputDirection);
+
+        if (_isHoldingAttack)
+        {
+            Attack(mousePos);
+        }
+
+        attackIndicator.origin = transform.position;
+        attackIndicator.targetPosition = mousePos;
+    }
+
+    public void HandleInputs(InputAction.CallbackContext context)
+    {
+        _inputDirection = context.ReadValue<Vector2>();
+    }
+
+    public void HandleAttack(InputAction.CallbackContext context)
+    {
+        _isHoldingAttack = context.performed;
+    }
+
+    protected override void OnAttackBegin()
+    {
+        stats.AddModifier(StatType.MovingSpeed, _attackSlownessModifier); // -25% Speed while attacking
+    }
+
+    protected override void OnAttackEnd()
+    {
+        stats.RemoveModifier(StatType.MovingSpeed, _attackSlownessModifier);
+    }
+}
