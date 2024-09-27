@@ -28,8 +28,7 @@ public class ProjectileControl : AttackControl
 
         if (normalized >= 1)
         {
-            onAttackHit(transform.position);
-            Destroy(gameObject);
+            onAttackLanded(transform.position);
             return;
         }
         
@@ -46,9 +45,17 @@ public class ProjectileControl : AttackControl
         transform.position = _origin + new Vector3(_direction.x * normalized, y, _direction.y * normalized);
     }
 
-    public virtual void onAttackHit(Vector3 hitPosition)
+    public virtual void onAttackLanded(Vector3 hitPosition)
     {
-        
+        Destroy(gameObject);
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Block"))
+        {
+            onAttackLanded(transform.position);
+        }
     }
 
     public override void Attack(Entity attacker, Vector3 targetPosition)

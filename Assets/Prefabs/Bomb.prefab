@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectDuration: 0.75
-  projectionMaxHeight: 5
+  projectionMaxHeight: 3

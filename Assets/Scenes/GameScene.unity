@@ -1379,7 +1379,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   viewDistance: 10
   arg: 0.9
-  maxHeight: 2.5
+  maxHeight: 3
   blockDetection: 0
   mask:
     serializedVersion: 2
