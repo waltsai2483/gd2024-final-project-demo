@@ -16,7 +16,7 @@ public class GameManager : MonoSingleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        SetBorder(new Vector2(-5, 5), new Vector2(5, -5));
+        SetBorder(new Vector2(-20, 20), new Vector2(20, -20));
     }
 
     // Update is called once per frame

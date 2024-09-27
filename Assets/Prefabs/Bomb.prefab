@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5963fce64dcc9694c8c0b03cb7e3a9ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectDuration: 1
-  projectionMaxHeight: 3
+  projectDuration: 0.75
+  projectionMaxHeight: 5

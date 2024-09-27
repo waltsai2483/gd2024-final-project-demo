@@ -7,10 +7,10 @@
     <list default="true" id="ebbac78c-617d-4d83-b7e0-9faa0e42d329" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chromatic Clash/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chromatic Clash/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bomb.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Bomb.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Bullet.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/controls/Attack/BulletControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/controls/Attack/BulletControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/controls/CameraControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/controls/CameraControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/game/entity/attack/AttackIndicator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/game/entity/attack/AttackIndicator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +141,8 @@
       <workItem from="1727316130358" duration="7909000" />
       <workItem from="1727331481001" duration="14200000" />
       <workItem from="1727410676960" duration="8406000" />
-      <workItem from="1727435185032" duration="1767000" />
+      <workItem from="1727435185032" duration="1893000" />
+      <workItem from="1727440118891" duration="1807000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -167,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727428271462</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Capibility to target and attack onto top / bottom floors">
+      <option name="closed" value="true" />
+      <created>1727437085360</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727437085361</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +196,8 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Shader Renaming &amp; Fix projectile indicator bug" />
     <MESSAGE value="Basic bullet &amp; projectile control, projectile magnitude for attack indicator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic bullet &amp; projectile control, projectile magnitude for attack indicator" />
+    <MESSAGE value="Capibility to target and attack onto top / bottom floors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Capibility to target and attack onto top / bottom floors" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
