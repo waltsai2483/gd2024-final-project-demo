@@ -54,7 +54,7 @@ public class AttackIndicator : MonoBehaviour
         if (type == FovType.Projectile)
         {
             int rayCount = 360;
-            float minSplitDist = 0.05f;
+            float minSplitDist = 0.1f;
 
             Vector3 position = targetPosition;
             Vector2 xzVect = new Vector2(position.x - origin.x, position.z - origin.z);
@@ -127,7 +127,7 @@ public class AttackIndicator : MonoBehaviour
                 for (int i = 0; i <= rayCount; i++)
                 {
                     Vector3 rayDirection =
-                        new Vector3(Mathf.Cos(angle * Mathf.PI / 180), 0, Mathf.Sin(angle * Mathf.PI / 180));
+                        new Vector3(Mathf.Cos(angle * Mathf.PI / 180), _direction.y / _direction.magnitude, Mathf.Sin(angle * Mathf.PI / 180));
 
                     if (blockDetection)
                     {

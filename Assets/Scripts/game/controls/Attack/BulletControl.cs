@@ -9,28 +9,27 @@ public class BulletControl : AttackControl
     public float moveSpeed;
     public float distance;
 
-    private Rigidbody _rigidbody;
-    private Vector3 _originalPosition;
+    private float _travelDistance;
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        if ((transform.position - _originalPosition).magnitude > distance)
+        if (_travelDistance > distance)
         {
             BulletOutOfRange();
         }
+        _travelDistance += moveSpeed * Time.deltaTime;
     }
 
     public override void Attack(Entity attacker, Vector3 targetPosition)
     {
         base.Attack(attacker, targetPosition);
-
+        
         Vector3 direction = (targetPosition - transform.position).normalized;
-        _rigidbody.velocity = direction * moveSpeed;
+        GetComponent<Rigidbody>().velocity = direction * moveSpeed;
     }
 
     protected virtual void BulletOutOfRange()
@@ -48,8 +47,9 @@ public class BulletControl : AttackControl
         hitEntity.Damage(attacker, attackDamage * attacker.stats.attackDamageMultiplier);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
+        print(other.gameObject.layer);
         if (other.gameObject.layer == LayerMask.NameToLayer("Entity"))
         {
             BulletHitEntity(other.gameObject.GetComponent<Entity>());

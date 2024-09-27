@@ -23,9 +23,9 @@ public class CameraControl: MonoSingleton<CameraControl>
     {
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
         
-        if (Physics.Raycast(ray, out var hit, float.MaxValue, LayerMask.GetMask("Ground")))
+        if (Physics.Raycast(ray, out var hit, float.MaxValue, LayerMask.GetMask("Ground", "Block")))
         {
-            return hit.point;
+            return hit.point + new Vector3(0, 1.08f, 0);
         }
         return Vector3.zero;
     }

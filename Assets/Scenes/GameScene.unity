@@ -508,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 285080776201864086, guid: 662b64018d8fb804b83ade0500639ff9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 285080776201864086, guid: 662b64018d8fb804b83ade0500639ff9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -773,7 +773,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1273004895
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -796,7 +796,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1273004896
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -806,7 +806,7 @@ Rigidbody:
   m_GameObject: {fileID: 1273004893}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.05
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -833,7 +833,7 @@ Transform:
   m_GameObject: {fileID: 1273004893}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -935,7 +935,7 @@ MonoBehaviour:
   animator: {fileID: 934109175}
   characterModel: {fileID: 1273004893}
   walkingParticles: {fileID: 1149899430}
-  attackPrefab: {fileID: 6089700456335263629, guid: 86bc9c18ca636e940a448e52ddedeca1, type: 3}
+  attackPrefab: {fileID: 8096394646929527326, guid: 68c59a237c128a8418ed7c489d09e051, type: 3}
   attackIndicator: {fileID: 2138953221}
 --- !u!1001 &1363970045
 PrefabInstance:
@@ -1468,11 +1468,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7f3f16db356a04880f9a481a9d6f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
   origin: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   viewDistance: 10
-  arg: 0.5
+  arg: 0.9
   maxHeight: 5
   blockDetection: 0
   mask:
@@ -1511,7 +1511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8967823636174406313, guid: 81349a6b6eaab0b45958e283432620a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 8967823636174406313, guid: 81349a6b6eaab0b45958e283432620a9, type: 3}
       propertyPath: m_LocalPosition.z
