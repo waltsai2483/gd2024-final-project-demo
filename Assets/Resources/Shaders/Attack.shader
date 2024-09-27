@@ -9,16 +9,14 @@ Shader "Unlit/Attack"
     {
         Tags
         {
-            "RenderType"="Transparent"
-            "Queue"="Transparent+2000"
+            "RenderType"="Opaque"
+            "Queue"="AlphaTest"
         }
         LOD 200
         Cull Off
         Blend SrcAlpha OneMinusSrcAlpha
 
         CGINCLUDE
-        #pragma vertex vert
-
         #include "UnityCG.cginc"
 
         struct appdata
@@ -58,6 +56,7 @@ Shader "Unlit/Attack"
         Pass
         {
             CGPROGRAM
+            #pragma vertex vert
             #pragma fragment frag
             ENDCG
         }
@@ -65,8 +64,8 @@ Shader "Unlit/Attack"
         Pass
         {
             ZTest Greater
-
             CGPROGRAM
+            #pragma vertex vert
             #pragma fragment fragXRay
             ENDCG
         }

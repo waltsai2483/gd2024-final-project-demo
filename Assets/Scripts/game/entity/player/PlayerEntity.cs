@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 public class PlayerEntity : Entity
 {
     public AttackIndicator attackIndicator;
-
+    
     private Vector2 _inputDirection;
 
     private bool _isHoldingAttack = false;
@@ -22,11 +22,16 @@ public class PlayerEntity : Entity
     protected override void Update()
     {
         base.Update();
-        Vector3 mousePos = CameraControl.instance.GetMousePos();
         HandleMovement(_inputDirection);
 
+        Vector3 mousePos = CameraControl.instance.GetMousePos();
         if (_isHoldingAttack)
         {
+            Vector2 xzVect = new Vector2(mousePos.x - transform.position.x, mousePos.z - transform.position.z);
+            if (xzVect.magnitude > attackIndicator.viewDistance)
+            {
+                mousePos = new Vector3(transform.position.x + xzVect.normalized.x * attackIndicator.viewDistance, mousePos.y, transform.position.z + xzVect.normalized.y * attackIndicator.viewDistance);
+            }
             Attack(mousePos);
         }
 

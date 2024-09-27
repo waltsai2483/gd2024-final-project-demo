@@ -12,7 +12,8 @@ public enum StatType
     MovingSpeed,
     RotateWeight,
     VisionRange,
-    AttackDuration
+    AttackDuration,
+    AttackDamageBoost
 }
 
 public enum StatOperationType
@@ -157,6 +158,18 @@ public class EntityStats
                 UpdateStats();
             }
             return _finalStats[StatType.AttackDuration];
+        }
+    }
+    
+    public float attackDamageMultiplier
+    {
+        get 
+        {
+            if (!_finalStats.ContainsKey(StatType.AttackDamageBoost))
+            {
+                UpdateStats();
+            }
+            return Math.Max(1 + _finalStats[StatType.AttackDamageBoost], 0);
         }
     }
 }

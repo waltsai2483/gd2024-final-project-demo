@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Entity : MonoBehaviour
 {
@@ -8,11 +9,15 @@ public class Entity : MonoBehaviour
     [NotNull] public Animator animator;
 
     public GameObject characterModel;
+    public ParticleSystem walkingParticles;
+
+    public AttackControl attackPrefab;
 
     protected CharacterController entityController;
     protected Rigidbody rigidBody;
+    protected int walkParticleEmissionRate = 3;
     
-    protected Vector2 attackDirection = Vector2.zero;
+    public Vector2 attackDirection { get; protected set; } = Vector2.zero;
     
     private bool _isAttacking;
     private float _endAttackTime = 0;
@@ -64,7 +69,10 @@ public class Entity : MonoBehaviour
                 : 300 * stats.rotateWeight; // Normal walking therefore slower & depends on rotation weight
             characterModel.transform.rotation = Quaternion.RotateTowards(characterModel.transform.rotation, destRot, m * Time.deltaTime);
         }
-        // attack end update (for anim transition)
+        // walking particle update
+        
+        ParticleSystem.EmissionModule psEmission = walkingParticles.emission;
+        psEmission.rateOverTime = _movementDirection != Vector2.zero ? walkParticleEmissionRate * entityController.velocity.magnitude : 0;
     }
 
     protected void LateUpdate()
@@ -125,6 +133,9 @@ public class Entity : MonoBehaviour
             animator.ResetTrigger("Attack");
             animator.SetTrigger("Attack"); // Replay attack animation again
         }
+
+        GameObject attack = Instantiate(attackPrefab.gameObject, transform.position, Quaternion.identity);
+        attack.GetComponent<AttackControl>().Attack(this, targetPosition);
         
         if (!temp)
         {

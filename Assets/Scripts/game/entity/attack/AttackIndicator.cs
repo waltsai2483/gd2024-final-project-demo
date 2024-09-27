@@ -25,6 +25,9 @@ public class AttackIndicator : MonoBehaviour
     [Tooltip(
         "Main arg to control indicator.\n* If type is Cone then it defines the angle of sector.\n* If type is Line then it defines the width of line.\n* If type is Projectile then it defines the attack radius of projectile.")]
     public float arg = 1;
+    
+    [Tooltip("Projection max height (magnitude) only for type Projectile.")]
+    public float maxHeight = 1f;
 
     [Tooltip(
         "If attack indicator can be blocked by collider in certain layer (Set it to false for penetrable attacks).")]
@@ -205,7 +208,7 @@ public class AttackIndicator : MonoBehaviour
 
         float step = 0;
         float yDist = targetPosition.y - origin.y;
-        float xDist = (1 + Mathf.Sqrt(1 + Mathf.Abs(yDist))) / 2;
+        float xDist = (1 + Mathf.Sqrt(1 + Mathf.Abs(yDist / maxHeight))) / 2;
         
         float yOffset = Mathf.Max(yDist, 0);
         int triangleIndex = 0;
@@ -216,7 +219,7 @@ public class AttackIndicator : MonoBehaviour
             float xOffset = yDist > 0 ? 1 - normalized : normalized;
             float operand = 2 * xOffset * xDist - 1;
             
-            float y = -operand * operand + 1 + yOffset;
+            float y = -maxHeight * operand * operand + maxHeight + yOffset;
             Vector3 center = origin + new Vector3(direction.x * step, y, direction.z * step);
             
             vertices[2 * i] = center + normal;
