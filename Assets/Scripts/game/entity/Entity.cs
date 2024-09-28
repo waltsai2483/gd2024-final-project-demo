@@ -6,12 +6,15 @@ using UnityEngine.Events;
 public class Entity : MonoBehaviour
 {
     [SerializeField] public EntityStats stats;
-    [NotNull] public Animator animator;
+    public Animator animator;
 
     public GameObject characterModel;
     public ParticleSystem walkingParticles;
 
     public AttackControl attackPrefab;
+    
+    public bool canMove = true;
+    public bool forceRotate = true;
 
     protected CharacterController entityController;
     protected Rigidbody rigidBody;
@@ -25,7 +28,6 @@ public class Entity : MonoBehaviour
     private Vector2 _movementDirection = Vector2.zero;
 
     private float _yVelocity;
-    private bool canMove { get; set; } = true;
     
     public virtual bool isAttacking
     {
@@ -61,7 +63,7 @@ public class Entity : MonoBehaviour
             destYRot = -Mathf.Atan2(_movementDirection.y, _movementDirection.x) + Mathf.PI / 2;
         }
 
-        if (characterModel && destYRot != null)
+        if (characterModel && destYRot != null && forceRotate)
         {
             Quaternion destRot = Quaternion.Euler(0, destYRot.Value * Mathf.Rad2Deg, 0);
             float m = attackDirection != Vector2.zero || Math.Abs(Time.time - _endAttackTime) <= 0.5f
@@ -70,9 +72,12 @@ public class Entity : MonoBehaviour
             characterModel.transform.rotation = Quaternion.RotateTowards(characterModel.transform.rotation, destRot, m * Time.deltaTime);
         }
         // walking particle update
-        
-        ParticleSystem.EmissionModule psEmission = walkingParticles.emission;
-        psEmission.rateOverTime = _movementDirection != Vector2.zero ? walkParticleEmissionRate * entityController.velocity.magnitude : 0;
+
+        if (walkingParticles)
+        {
+            ParticleSystem.EmissionModule psEmission = walkingParticles.emission;
+            psEmission.rateOverTime = _movementDirection != Vector2.zero ? walkParticleEmissionRate * entityController.velocity.magnitude : 0;
+        }
     }
 
     protected void LateUpdate()
